@@ -39,6 +39,8 @@ class Janela extends JFrame {
         add(calcula);
         
         insereValor novoValor = new insereValor();
+        chkTributo.addItemListener(novoValor);
+        chkICMS.addItemListener(novoValor);
         calcula.addActionListener(novoValor);
     }
 
@@ -46,13 +48,13 @@ class Janela extends JFrame {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
-            
+            calcular();
+ 
             
           
         }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        private void calcular() throws HeadlessException, NumberFormatException {
             Double valorDolar = Double.parseDouble(valor.getText());
             Double valorCotacao = Double.parseDouble(cotacao.getText());
             Double valorFinal = valorDolar * valorCotacao;
@@ -65,11 +67,12 @@ class Janela extends JFrame {
                     valorFinal = valorFinal + valorFinal * 0.18;
                 }
             }
-            else
-            {
-                valorFinal = valorFinal;
-            }
-            JOptionPane.showMessageDialog(null, "O valor é " + valorFinal, "Valor", JOptionPane.INFORMATION_MESSAGE);
+            JLabel.showMessageDialog(null, "O valor é " + valorFinal, "Valor", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            calcular();
         }
 
         
