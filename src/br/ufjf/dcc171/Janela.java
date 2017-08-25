@@ -21,6 +21,7 @@ class Janela extends JFrame {
         private final JCheckBox chkTributo = new JCheckBox("Tributo");
         private final JLabel etiqueta = new JLabel("Digite o valor do produto em dólar:");
         private final JLabel etiqueta2 = new JLabel("Cotação do dólar em relação ao real");
+        private JLabel etiqueta3 = new JLabel();
         private final JButton calcula = new JButton("Valor do produto");
         
     public Janela() throws HeadlessException {
@@ -37,6 +38,7 @@ class Janela extends JFrame {
         add(chkICMS);
         add(chkTributo);
         add(calcula);
+        add(etiqueta3);
         
         insereValor novoValor = new insereValor();
         chkTributo.addItemListener(novoValor);
@@ -67,7 +69,9 @@ class Janela extends JFrame {
                     valorFinal = valorFinal + valorFinal * 0.18;
                 }
             }
-            JLabel.showMessageDialog(null, "O valor é " + valorFinal, "Valor", JOptionPane.INFORMATION_MESSAGE);
+            etiqueta3.setText(valorFinal.toString());
+            
+           // JOptionPane.showMessageDialog(null, "O valor é " + valorFinal, "Valor", JOptionPane.INFORMATION_MESSAGE);
         }
 
         @Override
